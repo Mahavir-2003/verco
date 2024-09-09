@@ -38,9 +38,9 @@ const sidebar_icons = [
     icon: SettingsIcon,
   },
   {
-    name: 'Calender',
-    href: '/calender',
-    slug: 'calender',
+    name: 'Appointments',
+    href: '/appointments',
+    slug: 'appointments',
     icon: CalenderIcon,
   },
   {
@@ -57,15 +57,15 @@ const SideBar = () => {
   return (
     <div className='min-w-fit p-4 h-[100dvh] bg-[#161616] flex flex-col justify-between items-center border-r-[1px] border-r-white/10 rounded-sm'>
       <div className='flex flex-col gap-y-12'>
-        <div className='logo'>
+        <Link href='/'>
           <Image src={Logo} alt='verco_logo' width={34} height={30} />
-        </div>
+        </Link>
         <div className='nav-icons flex flex-col gap-y-5 justify-center items-center '>
           {sidebar_icons.map((icon, index) => (
             <Link key={index} href={icon.href}>
               <div className={cn(
                 'nav-icon w-[28px] h-[28px] relative flex items-center justify-center hover:opacity-100 transition-all duration-200',
-                pathname === icon.href ? 'opacity-100' : 'opacity-70'
+                pathname === icon.href ? 'opacity-100' : 'opacity-65'
               )}>
                 <Image src={icon.icon} alt={icon.name} fill />
               </div>
