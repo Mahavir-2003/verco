@@ -74,7 +74,7 @@ const SideBar = () => {
         </div>
       </div>
       <div className='profile'>
-        <UserButton />
+        <UserButton afterSignOutUrl='/' />
       </div>
     </div>
   )
