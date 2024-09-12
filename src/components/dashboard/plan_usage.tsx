@@ -16,7 +16,7 @@ export const PlanUsage = ({
 }: PlanUsageProps) => {
 
   return (
-    <div className="flex flex-col gap-8 py-5">
+    <div className="flex flex-col gap-6 py-5">
       <ProgressBar
         end={plan == 'STANDARD' ? 10 : plan == 'PRO' ? 50 : 500}
         label="Email Credits"
