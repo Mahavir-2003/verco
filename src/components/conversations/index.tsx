@@ -25,9 +25,9 @@ const ConversationMenu = ({ domains }: Props) => {
     useConversation()
 
   return (
-    <div className="py-3 px-0">
-      <TabsMenu triggers={TABS_MENU}>
-        <TabsContent value="unread">
+    <div className="py-4 px-4 border-r-[1px] border-white/30">
+      <TabsMenu triggers={TABS_MENU} className='bg-[#252525] px-1 py-5 border-white/30 border-[1px]'>
+        <TabsContent value="unread" >
           <ConversationSearch
             domains={domains}
             register={register}

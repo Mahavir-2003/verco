@@ -17,7 +17,7 @@ const ConversationSearch = ({ register, domains }: Props) => {
     <div className="flex flex-col py-3">
       <select
         {...register('domain')}
-        className="px-3 py-4 text-sm border-[1px] rounded-lg mr-5"
+        className="px-2 py-4 text-sm border-[1px] border-white/30 rounded-lg  bg-[#252525]"
       >
         <option
           disabled

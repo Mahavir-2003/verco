@@ -55,7 +55,7 @@ const SideBar = () => {
   const pathname = usePathname()
 
   return (
-    <div className='min-w-fit p-4 h-[100dvh] bg-[#161616] flex flex-col justify-between items-center border-r-[1px] border-r-white/10 rounded-sm'>
+    <div className='min-w-fit p-4 h-[100dvh] bg-[#161616] flex flex-col justify-between items-center border-r-[1px] border-r-white/30 rounded-sm'>
       <div className='flex flex-col gap-y-12'>
         <Link href='/'>
           <Image src={Logo} alt='verco_logo' width={34} height={30} />
