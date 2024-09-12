@@ -19,7 +19,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body
-        className={`${inter.className} antialiased bg-[#161616] text-white min-h-screen w-[100dvw] custom-scrollbar`}
+        className={`${inter.className} antialiased bg-[#161616] text-white min-h-screen w-[100dvw] no-scrollbar`}
       >
         {children}
       </body>

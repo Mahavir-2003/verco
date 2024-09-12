@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
     <Navbar />
-    <main className="flex flex-col items-center justify-center w-full h-full">
+    <main className="flex flex-col items-center justify-center w-[100dvw] h-full">
       <section className="flex items-center justify-center w-full h-full mt-16 flex-col">
         <p className="text-lg text-orange-400 bg-orange-50 px-4 py-[1px] rounded-full mb-4">Create your own AI Sales agents.</p>
         <div className="relative w-[40%] h-[140px]">
