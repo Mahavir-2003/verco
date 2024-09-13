@@ -22,11 +22,11 @@ export const onCompleteUserRegistration = async (
 
     if (existingUser) {
       // User already exists, return the existing user
-      console.log('User already exists:', existingUser)
+      // console.log('User already exists:', existingUser)
       return { status: 200, user: existingUser }
     }
 
-    console.log('User does not exist, creating a new user...')
+    // console.log('User does not exist, creating a new user...')
 
     // User doesn't exist, create a new one
     const newUser = await client.user.create({
