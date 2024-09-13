@@ -67,7 +67,7 @@ const DomainMenu = ({ domains }: Props) => {
           </Loader>
         </AppDrawer>
       </div>
-      <div className="flex flex-col gap-1 text-ironside font-medium">
+      <div className="flex flex-col gap-1 text-ironside font-medium mt-2">
         {domains &&
           domains.map((domain) => (
             <Link
@@ -81,8 +81,9 @@ const DomainMenu = ({ domains }: Props) => {
               <Image
                 src={`https://ucarecdn.com/${domain.icon}/`}
                 alt="logo"
-                width={20}
-                height={20}
+                width={25}
+                height={25}
+                className='rounded-full'
               />
             </Link>
           ))}
