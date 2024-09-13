@@ -11,6 +11,7 @@ import CalenderIcon from "@/public/icons/calender.svg";
 import EmailIcon from "@/public/icons/email.svg";
 import Image from 'next/image'
 import { UserButton } from '@clerk/nextjs';
+import DomainMenu from './domain-menu';
 
 const sidebar_icons = [
   {
@@ -51,7 +52,18 @@ const sidebar_icons = [
   }
 ]
 
-const SideBar = () => {
+type SideBarProps = {
+  domains:
+    | {
+        id: string
+        name: string
+        icon: string | null
+      }[]
+    | null
+    | undefined
+}
+
+const SideBar = ({domains} : SideBarProps) => {
   const pathname = usePathname()
 
   return (
@@ -71,6 +83,10 @@ const SideBar = () => {
               </div>
             </Link>
           ))}
+          <DomainMenu
+            min
+            domains={domains}
+          />
         </div>
       </div>
       <div className='profile'>
