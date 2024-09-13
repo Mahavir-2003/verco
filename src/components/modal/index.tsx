@@ -67,10 +67,10 @@ const Modal = ({
       return (
         <Dialog>
           <DialogTrigger asChild>{trigger}</DialogTrigger>
-          <DialogContent>
+          <DialogContent className='bg-[#252525] border-[1px] border-white/30 text-white'>
             <DialogHeader>
               <DialogTitle className="text-xl">{title}</DialogTitle>
-              <DialogDescription>{description}</DialogDescription>
+              <DialogDescription className='text-white/70 font-light'>{description}</DialogDescription>
             </DialogHeader>
             {children}
           </DialogContent>
