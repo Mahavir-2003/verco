@@ -19,14 +19,7 @@ const CodeSnippet = ({ id }: Props) => {
     document.head.append(style);
     }
     
-    iframeStyles('
-        .chat-frame {
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-            border: none;
-        }
-    ')
+    iframeStyles('.chat-frame {position: fixed;bottom: 50px;right: 50px;border: none;}')
     
     iframe.src = "http://localhost:3000/chatbot"
     iframe.classList.add('chat-frame')
