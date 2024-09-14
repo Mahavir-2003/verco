@@ -47,7 +47,7 @@ const SubscriptionForm = ({ plan }: Props) => {
         </div>
         <StripeElements payment={payment} />
         {payment === 'STANDARD' && (
-          <Button onClick={onUpdatetToFreTier}>
+          <Button onClick={onUpdatetToFreTier} variant="secondary">
             <Loader loading={loading}>Confirm</Loader>
           </Button>
         )}

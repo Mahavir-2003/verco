@@ -7,14 +7,17 @@ import { pricingCards } from '@/constants/landing-page'
 import Modal from '../modal'
 import SubscriptionForm from '../forms/settings/subscription-form'
 import Image from 'next/image'
+import CreditCardImage from "@/public/images/credit_card.svg"
 
 type Props = {}
 
 const BillingSettings = async (props: Props) => {
   const plan = await onGetSubscriptionPlan()
+  // console.log(plan)
   const planFeatures = pricingCards.find(
     (card) => card.title.toUpperCase() === plan?.toUpperCase()
   )?.features
+
   if (!planFeatures) return
 
   console.log(planFeatures)
@@ -44,7 +47,7 @@ const BillingSettings = async (props: Props) => {
               </Card>
             ) : (
               <Image
-                src="/images/creditcard.png"
+                src={CreditCardImage}
                 width={400}
                 height={400}
                 alt="image"

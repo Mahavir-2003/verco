@@ -15,11 +15,10 @@ export const pricingCards = [
     duration: 'month',
     highlight: 'Key features',
     features: [' Unlimited domain ', '500 Contacts', '500 Emails'],
-
     priceId: 'price_1OYxkqFj9oKEERu1KfJGWxgN',
   },
   {
-    title: 'Plus',
+    title: 'Pro',
     description: 'For serious agency owners',
     price: '$67',
     duration: 'month',

@@ -25,18 +25,18 @@ const SubscriptionCard = ({
     <Label htmlFor={id}>
       <Card
         className={cn(
-          'w-full cursor-pointer',
-          payment == id && 'border-orange'
+          'w-full cursor-pointer bg-transparent text-white',
+          payment == id && 'bg-black/40'
         )}
       >
         <CardContent className="flex justify-between p-2">
           <div className="flex items-center gap-3">
-            <Card className={cn('flex justify-center p-3 border-none')}>
-              <CardTitle>${price}</CardTitle>
+            <Card className={cn('flex justify-center p-3 border-none bg-transparent shadow-none')}>
+              <CardTitle className=' text-white'>${price}</CardTitle>
             </Card>
             <div className="">
-              <CardDescription className="font-bold">{title}</CardDescription>
-              <CardDescription className="font-light">
+              <CardDescription className="font-bold text-white">{title}</CardDescription>
+              <CardDescription className="font-light text-white/60">
                 {description}
               </CardDescription>
             </div>
