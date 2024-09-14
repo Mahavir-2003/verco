@@ -10,7 +10,7 @@ import {
   onUpdatePassword,
   onUpdateWelcomeMessage,
 } from '@/actions/settings'
-import { useToast } from '@/components/ui/use-toast'
+// import { useToast } from '@/components/ui/use-toast'
 import {
   ChangePasswordProps,
   ChangePasswordSchema,
@@ -31,6 +31,7 @@ import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useToast } from '../use-toast'
 
 const upload = new UploadClient({
   publicKey: process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY as string,
@@ -64,7 +65,8 @@ export const useChangePassword = () => {
       if (updated) {
         reset()
         setLoading(false)
-        toast({ title: 'Success', description: updated.message })
+        toast({ title: 'Success', description: updated.message , className: 'bg-[#202020] border-[1px] border-white/30 text-white', })
+
       }
     } catch (error) {
       console.log(error)
@@ -120,6 +122,7 @@ export const useSettings = (id: string) => {
         toast({
           title: 'Success',
           description: message.message,
+          className: 'bg-[#202020] border-[1px] border-white/30 text-white',
         })
       }
     }
@@ -135,6 +138,7 @@ export const useSettings = (id: string) => {
       toast({
         title: 'Success',
         description: deleted.message,
+        className: 'bg-[#202020] border-[1px] border-white/30 text-white',
       })
       setDeleting(false)
       router.refresh()
@@ -177,6 +181,7 @@ export const useHelpDesk = (id: string) => {
       toast({
         title: question.status == 200 ? 'Success' : 'Error',
         description: question.message,
+        className: 'bg-[#202020] border-[1px] border-white/30 text-white',
       })
       setLoading(false)
       reset()
@@ -228,6 +233,7 @@ export const useFilterQuestions = (id: string) => {
       toast({
         title: questions.status == 200 ? 'Success' : 'Error',
         description: questions.message,
+        className: 'bg-[#202020] border-[1px] border-white/30 text-white',
       })
       reset()
       setLoading(false)
@@ -283,6 +289,7 @@ export const useProducts = (domainId: string) => {
         toast({
           title: 'Success',
           description: product.message,
+          className: 'bg-[#202020] border-[1px] border-white/30 text-white',
         })
         setLoading(false)
       }

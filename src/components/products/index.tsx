@@ -37,8 +37,6 @@ const ProductTable = ({ id, products }: Props) => {
           {
             label: 'All products',
           },
-          { label: 'Live' },
-          { label: 'Deactivated' },
         ]}
         button={
           <div className="flex-1 flex justify-end text-white">
@@ -62,7 +60,7 @@ const ProductTable = ({ id, products }: Props) => {
         }
       >
         <TabsContent value="All products">
-          <DataTable headers={['Featured Image', 'Name', 'Pricing', 'Created']}>
+          <DataTable  headers={['Featured Image', 'Name', 'Pricing', 'Created']}>
             {products.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>
