@@ -21,7 +21,7 @@ export const CreateProductForm = ({ id }: CreateProductFormProps) => {
   const { onCreateNewProduct, register, errors, loading } = useProducts(id)
   return (
     <form
-      className="mt-3 w-full flex flex-col gap-5 py-10"
+      className="mt-3 w-full flex flex-col gap-5 py-10 text-white"
       onSubmit={onCreateNewProduct}
     >
       <FormGenerator
@@ -36,7 +36,7 @@ export const CreateProductForm = ({ id }: CreateProductFormProps) => {
       <div className="flex flex-col items-start">
         <Label
           htmlFor="upload-product"
-          className="flex gap-2 p-3 rounded-lg bg-peach text-gray-600 cursor-pointer font-semibold text-sm items-center"
+          className="flex gap-2 p-3 rounded-lg bg-peach text-white cursor-pointer font-semibold text-sm items-center w-full bg-[#252525] border-[1px] border-white/40"
         >
           <Input
             {...register('image')}
@@ -69,6 +69,7 @@ export const CreateProductForm = ({ id }: CreateProductFormProps) => {
       <Button
         type="submit"
         className="w-full"
+        variant="secondary"
       >
         <Loader loading={loading}>Create Product</Loader>
       </Button>

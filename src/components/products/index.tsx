@@ -32,7 +32,7 @@ const ProductTable = ({ id, products }: Props) => {
         </p>
       </div>
       <TabsMenu
-        className="w-full flex justify-start"
+        className="w-full flex justify-start mt-4 bg-[#252525] font-light px-1 border-[1px] border-white/40 rounded-md"
         triggers={[
           {
             label: 'All products',
@@ -41,12 +41,11 @@ const ProductTable = ({ id, products }: Props) => {
           { label: 'Deactivated' },
         ]}
         button={
-          <div className="flex-1 flex justify-end">
+          <div className="flex-1 flex justify-end text-white">
             <SideSheet
-              description="Add products to your store and set them live to accept payments from
-          customers."
+              description="Add products to your store and set them live to accept payments from customers."
               title="Add a product"
-              className="flex items-center gap-2 bg-orange px-4 py-2 text-black font-semibold rounded-lg text-sm"
+              className="flex items-center gap-2 px-4 py-2 text-white font-semibold rounded-lg text-sm "
               trigger={
                 <>
                   <Plus
