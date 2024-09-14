@@ -40,7 +40,7 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
   } = useSettings(id)
   return (
     <form
-      className="flex flex-col gap-8 pb-10"
+      className="flex flex-col gap-8 pb-10 bg-transparent px-2"
       onSubmit={onUpdateSettings}
     >
       <div className="flex flex-col gap-3">
@@ -75,7 +75,7 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
               errors={errors}
             />
           </div>
-          <div className="col-span-1 relative ">
+          {/* <div className="col-span-1 relative ">
             <Image
               src="/images/bot-ui.png"
               className="sticky top-0"
@@ -83,7 +83,7 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
               width={530}
               height={769}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex gap-5 justify-end">
@@ -97,7 +97,8 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
         </Button>
         <Button
           type="submit"
-          className="w-[100px] h-[50px]"
+          className="w-[100px] h-[50px] px-16"
+          variant="secondary"
         >
           <Loader loading={loading}>Save</Loader>
         </Button>

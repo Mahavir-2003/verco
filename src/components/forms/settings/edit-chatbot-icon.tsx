@@ -1,6 +1,6 @@
 import Section from '@/components/section-label'
 import UploadButton from '@/components/upload-button'
-import { BotIcon } from '@/icons/bot-icon'
+import { BotIcon } from '@/icons/bot_icon'
 
 import Image from 'next/image'
 import React from 'react'
@@ -29,7 +29,7 @@ const EditChatbotIcon = ({ register, errors, chatBot }: Props) => {
         errors={errors}
       />
       {chatBot?.icon ? (
-        <div className="rounded-full overflow-hidden">
+        <div className="rounded-full overflow-hidden border-[2px] border-white/20">
           <Image
             src={`https://ucarecdn.com/${chatBot.icon}/`}
             alt="bot"

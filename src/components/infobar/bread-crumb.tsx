@@ -34,7 +34,7 @@ const BreadCrumb = (props: Props) => {
           </Loader>
         )}
       </div>
-      <p className="text-gray-500 text-sm">
+      <p className="text-white/50 text-sm font-light">
         {page == 'settings'
           ? 'Manage your account settings, preferences and integrations'
           : page == 'dashboard'

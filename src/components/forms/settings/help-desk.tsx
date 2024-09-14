@@ -22,8 +22,8 @@ const HelpDesk = ({ id }: Props) => {
     useHelpDesk(id)
 
   return (
-    <Card className="w-full grid grid-cols-1 lg:grid-cols-2">
-      <CardContent className="p-6 border-r-[1px]">
+    <Card className="w-full grid grid-cols-1 lg:grid-cols-2 bg-[#161616] text-white rounded-md border-white/30">
+      <CardContent className="p-6 border-r-[1px] border-white/30">
         <CardTitle>Help Desk</CardTitle>
         <form
           onSubmit={onSubmitQuestion}
@@ -62,13 +62,14 @@ const HelpDesk = ({ id }: Props) => {
           </div>
           <Button
             type="submit"
-            className="bg-orange hover:bg-orange hover:opacity-70 transition duration-150 ease-in-out text-white font-semibold"
+            className="font-semibold"
+            variant="secondary" 
           >
             Create
           </Button>
         </form>
       </CardContent>
-      <CardContent className="p-6 overflow-y-auto chat-window">
+      <CardContent className="p-4 overflow-y-auto chat-window text-white">
         <Loader loading={loading}>
           {isQuestions.length ? (
             isQuestions.map((question) => (
@@ -79,7 +80,7 @@ const HelpDesk = ({ id }: Props) => {
               />
             ))
           ) : (
-            <CardDescription>No Questions to show</CardDescription>
+            <CardDescription className=' text-white/40'>No Questions to show</CardDescription>
           )}
         </Loader>
       </CardContent>

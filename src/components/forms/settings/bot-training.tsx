@@ -1,4 +1,4 @@
-import TabsMenu from '@/components/tabs/intex'
+import TabsMenu from '@/components/tabs/index'
 import { TabsContent } from '@/components/ui/tabs'
 import { HELP_DESK_TABS_MENU } from '@/constants/menu'
 import React from 'react'
@@ -19,10 +19,10 @@ const BotTrainingForm = ({ id }: Props) => {
           train your bot to act the way you want it to.
         </p>
       </div>
-      <TabsMenu triggers={HELP_DESK_TABS_MENU}>
+      <TabsMenu triggers={HELP_DESK_TABS_MENU} className=' bg-[#252525] px-1 border-[1px] border-white/40 rounded-md'>
         <TabsContent
           value="help desk"
-          className="w-full"
+          className="w-full rounded-sm "
         >
           <HelpDesk id={id} />
         </TabsContent>

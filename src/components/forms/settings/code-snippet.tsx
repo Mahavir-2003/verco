@@ -1,6 +1,6 @@
 'use client'
 import Section from '@/components/section-label'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/hooks/use-toast'
 import { Copy } from 'lucide-react'
 import React from 'react'
 
@@ -42,24 +42,25 @@ const CodeSnippet = ({ id }: Props) => {
         `
 
   return (
-    <div className="mt-10 flex flex-col gap-5 items-start">
+    <div className="mt-10 flex flex-col gap-5 items-start pr-20">
       <Section
         label="Code snippet"
         message="Copy and paste this code snippet into the header tag of your website"
       />
-      <div className="bg-cream px-10 rounded-lg inline-block relative">
+      <div className="bg-[#202020] w-full rounded-lg inline-block relative border-[1px] border-white/30">
         <Copy
-          className="absolute top-5 right-5 text-gray-400 cursor-pointer"
+          className="absolute top-4 right-5 text-white cursor-pointer"
           onClick={() => {
             navigator.clipboard.writeText(snippet)
             toast({
               title: 'Copied to clipboard',
               description: 'You can now paste the code inside your website',
+              className: 'bg-[#202020] border-[1px] border-white/30 text-white',
             })
           }}
         />
         <pre>
-          <code className="text-gray-500">{snippet}</code>
+          <code className="text-white/70">{snippet}</code>
         </pre>
       </div>
     </div>

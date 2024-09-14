@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from 'next/font/google'
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased bg-[#111111] text-white min-h-screen w-[100dvw] no-scrollbar`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
     </ClerkProvider>
