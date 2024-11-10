@@ -6,13 +6,18 @@ import { PaymentElement } from '@stripe/react-stripe-js'
 import { Button } from '../ui/button'
 import { useCompletePayment } from '@/hooks/billing/use-billing'
 
-
 type PaymentFormProps = {
   plan: 'STANDARD' | 'PRO' | 'ULTIMATE'
 }
 
 export const PaymentForm = ({ plan }: PaymentFormProps) => {
   const { processing, onMakePayment } = useCompletePayment(plan)
+
+  // Don't render payment form for free plan
+  if (plan === 'STANDARD') {
+    return null
+  }
+
   return (
     <form
       onSubmit={onMakePayment}

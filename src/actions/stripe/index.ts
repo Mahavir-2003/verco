@@ -82,12 +82,12 @@ export const onUpdateSubscription = async (
 
 const setPlanAmount = (item: 'STANDARD' | 'PRO' | 'ULTIMATE') => {
   if (item == 'PRO') {
-    return 1500
+    return 1500 // $15.00
   }
   if (item == 'ULTIMATE') {
-    return 3500
+    return 3500 // $35.00
   }
-  return 0
+  return 50 // Changed from 0 to 50 cents minimum for STANDARD plan
 }
 
 export const onGetStripeClientSecret = async (
@@ -96,6 +96,11 @@ export const onGetStripeClientSecret = async (
   try {
     const user = await currentUser()
     if (!user) return null
+    
+    if (item === 'STANDARD') {
+      const updated = await onUpdateSubscription('STANDARD')
+      return { free: true, ...updated }
+    }
     
     const amount = setPlanAmount(item)
     const paymentIntent = await stripe.paymentIntents.create({

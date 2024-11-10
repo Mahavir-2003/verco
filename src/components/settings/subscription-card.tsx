@@ -21,6 +21,8 @@ const SubscriptionCard = ({
   payment,
   id,
 }: Props) => {
+  console.log('SubscriptionCard render:', { title, payment, id })
+  
   return (
     <Label htmlFor={id}>
       <Card
@@ -49,7 +51,10 @@ const SubscriptionCard = ({
               )}
             />
             <Input
-              onClick={() => onPayment(title)}
+              onClick={() => {
+                console.log('Clicked subscription:', title)
+                onPayment(title)
+              }}
               value={id}
               id={id}
               className="hidden"
