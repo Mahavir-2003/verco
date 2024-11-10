@@ -11,13 +11,13 @@ const InfoBar = (props: Props) => {
     <div className="flex w-full justify-between items-center py-1 mb-8 ">
       <BreadCrumb />
       <div className="flex gap-3 items-center">
-        <div>
+        {/* <div>
           <Card className="rounded-xl flex gap-3 py-3 px-4 text-ghost">
             <Trash />
             <Star></Star>
           </Card>
-        </div>
-        <Avatar>
+        </div> */}
+        {/* <Avatar>
           <AvatarFallback className="bg-orange text-white">
             <Headphones />
           </AvatarFallback>
@@ -28,7 +28,7 @@ const InfoBar = (props: Props) => {
             alt="@shadcn"
           />
           <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        </Avatar> */}
       </div>
     </div>
   )
