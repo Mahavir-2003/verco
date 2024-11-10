@@ -49,7 +49,10 @@ export const getUserBalance = async () => {
           stripeAccount: connectedStripe.stripeId!,
         })
 
+        // console.log(stripe.balanceTransactions.list())
+
         if (transactions) {
+          console.log(transactions)
           const sales = transactions.pending.reduce((total, next) => {
             return total + next.amount
           }, 0)
@@ -59,7 +62,7 @@ export const getUserBalance = async () => {
       }
     }
   } catch (error) {
-    console.log(error)
+    // console.log(error)
   }
 }
 
