@@ -76,13 +76,13 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
             />
           </div>
           <div className="col-span-1 relative ">
-            <Image
+            {/* <Image
               src="/images/bot-ui.png"
               className="sticky top-0"
               alt="bot-ui"
               width={530}
               height={769}
-            />
+            /> */}
           </div>
         </div>
       </div>
