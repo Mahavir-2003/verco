@@ -70,7 +70,7 @@ const Page = async (props: Props) => {
               clients={clients || 0}
             />
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <div className="w-full flex justify-between items-start mb-5">
               <div className="flex gap-3 items-center">
                 <TransactionsIcon />
@@ -93,7 +93,7 @@ const Page = async (props: Props) => {
                   </p>
                 </div>
               ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </>
