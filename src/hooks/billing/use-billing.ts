@@ -148,10 +148,10 @@ export const useStripeElements = (payment: 'STANDARD' | 'PRO' | 'ULTIMATE') => {
       console.log('Received intent:', intent)
       
       if (intent) {
-        if (intent.free) {
+        if ('free' in intent && intent.free) {
           console.log('Free plan detected')
           setStripeSecret('')
-        } else if (intent.secret) {
+        } else if ('secret' in intent && intent.secret) {
           console.log('Setting stripe secret:', intent.secret)
           setStripeSecret(intent.secret)
         }

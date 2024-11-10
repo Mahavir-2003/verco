@@ -5,13 +5,21 @@ import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET!, {
   typescript: true,
-  apiVersion: '2024-04-10',
+  apiVersion: '2023-10-16',
 })
+
+export const dynamic = 'force-dynamic'
+export const runtime = 'edge'
 
 export async function GET() {
   try {
     const user = await currentUser()
-    if (!user) return new NextResponse('User not authenticated')
+    if (!user) {
+      return NextResponse.json(
+        { error: 'User not authenticated' },
+        { status: 401 }
+      )
+    }
 
     const account = await stripe.accounts.create({
       country: 'US',
@@ -143,10 +151,19 @@ export async function GET() {
         }
       }
     }
+
+    return NextResponse.json(
+      { error: 'Failed to create Stripe account' },
+      { status: 500 }
+    )
   } catch (error) {
     console.error(
       'An error occurred when calling the Stripe API to create an account:',
       error
+    )
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
     )
   }
 }

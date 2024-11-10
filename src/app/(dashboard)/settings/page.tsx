@@ -6,7 +6,9 @@ import React from 'react'
 
 type Props = {}
 
-const Page = (props: Props) => {
+export const dynamic = 'force-dynamic'
+
+const SettingsPage = (props: Props) => {
   return (
     <>
       <InfoBar />
@@ -19,4 +21,4 @@ const Page = (props: Props) => {
   )
 }
 
-export default Page
+export default SettingsPage

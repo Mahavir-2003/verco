@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "prisma generate && npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": "nextjs",
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "PRISMA_GENERATE_DATAPROXY": "true",
+    "NEXT_PUBLIC_APP_URL": "https://your-vercel-domain.vercel.app",
+    "NODE_ENV": "production"
+  }
+} 
