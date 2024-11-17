@@ -35,31 +35,43 @@ export const getUserBalance = async () => {
   try {
     const user = await currentUser()
     if (user) {
-      const connectedStripe = await client.user.findUnique({
+      const userDomains = await client.domain.findMany({
         where: {
-          clerkId: user.id,
+          User: {
+            clerkId: user.id
+          }
         },
         select: {
-          stripeId: true,
-        },
-      })
-      
-      if (connectedStripe) {
-        const transactions = await stripe.balance.retrieve({
-          stripeAccount: connectedStripe.stripeId!,
-        })
-
-        if (transactions) {
-          const sales = transactions.pending.reduce((total, next) => {
-            return total + next.amount
-          }, 0)
-
-          return sales / 100
+          id: true
         }
-      }
+      })
+
+      const domainIds = userDomains.map(domain => domain.id)
+      
+      const charges = await stripe.charges.list({
+        limit: 100,
+        expand: ['data.payment_intent']
+      })
+
+      if (!charges?.data?.length) return 0
+
+      const totalRevenue = charges.data
+        .filter(charge => {
+          const isSucceeded = charge.status === 'succeeded'
+          const isFromUser = charge.metadata?.clerkId === user.id
+          const isProductPurchase = charge.metadata?.type === 'product_purchase' || 
+                                  charge.metadata?.productId != null
+
+          return isSucceeded && isFromUser && isProductPurchase
+        })
+        .reduce((sum, charge) => sum + charge.amount, 0)
+
+      return totalRevenue / 100
     }
+    return 0
   } catch (error) {
-    console.log(error)
+    console.error('Error in getUserBalance:', error)
+    return 0
   }
 }
 
@@ -161,5 +173,70 @@ export const getUserTransactions = async () => {
     }
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const getUserTotalSales = async () => {
+  try {
+    const user = await currentUser()
+    if (user) {
+      const connectedStripe = await client.user.findUnique({
+        where: {
+          clerkId: user.id,
+        },
+        select: {
+          stripeId: true,
+        },
+      })
+
+      if (connectedStripe?.stripeId) {
+        const charges = await stripe.charges.list({
+          limit: 100, // Adjust as needed
+          transfer_group: user.id,
+        })
+
+        return charges.data.filter(charge => charge.status === 'succeeded').length
+      }
+
+    }
+    return 0
+  } catch (error) {
+    console.log(error)
+    return 0
+  }
+}
+
+export const getRecentTransactions = async () => {
+  try {
+    const user = await currentUser()
+    if (!user) return null
+
+    const charges = await stripe.charges.list({
+      limit: 5,
+      expand: ['data.payment_intent']
+    })
+
+    if (!charges?.data?.length) return []
+
+    const recentTransactions = charges.data
+      .filter(charge => {
+        const isSucceeded = charge.status === 'succeeded'
+        const isFromUser = charge.metadata?.clerkId === user.id
+        const isProductPurchase = charge.metadata?.type === 'product_purchase' || 
+                                charge.metadata?.productId != null
+
+        return isSucceeded && isFromUser && isProductPurchase
+      })
+      .map(charge => ({
+        id: charge.id,
+        name: charge.metadata?.productName || charge.description || 'Product Purchase',
+        price: charge.amount / 100,
+        purchasedAt: new Date(charge.created * 1000)
+      }))
+
+    return recentTransactions
+  } catch (error) {
+    console.error('Error in getRecentTransactions:', error)
+    return null
   }
 }

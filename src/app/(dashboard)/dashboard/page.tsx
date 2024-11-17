@@ -4,7 +4,8 @@ import {
   getUserClients,
   getUserPlanInfo,
   getUserTotalProductPrices,
-  getUserTransactions,
+  getUserTotalSales,
+  getRecentTransactions,
 } from '@/actions/dashboard'
 import DashboardCard from '@/components/dashboard/cards'
 import { PlanUsage } from '@/components/dashboard/plan-usage'
@@ -16,16 +17,20 @@ import PersonIcon from '@/icons/person-icon'
 import { TransactionsIcon } from '@/icons/transactions-icon'
 import { DollarSign } from 'lucide-react'
 import React from 'react'
+import { formatDistance } from 'date-fns'
 
 type Props = {}
 
 const Page = async (props: Props) => {
   const clients = await getUserClients()
-  const sales = await getUserBalance()
+  const totalRevenue = await getUserBalance()
   const bookings = await getUserAppointments()
   const plan = await getUserPlanInfo()
-  const transactions = await getUserTransactions()
+  const totalSales = await getUserTotalSales()
   const products = await getUserTotalProductPrices()
+  const recentTransactions = await getRecentTransactions()
+
+  const productsValue = products || 0
 
   return (
     <>
@@ -38,21 +43,15 @@ const Page = async (props: Props) => {
             icon={<PersonIcon />}
           />
           <DashboardCard
-            value={products! * clients! || 0}
+            value={productsValue}
             sales
-            title="Pipline Value"
+            title="Total Products Value"
             icon={<DollarSign />}
           />
           <DashboardCard
             value={bookings || 0}
             title="Appointments"
             icon={<CalIcon />}
-          />
-          <DashboardCard
-            value={sales || 0}
-            sales
-            title="Total Sales"
-            icon={<DollarSign />}
           />
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 py-10">
@@ -79,20 +78,28 @@ const Page = async (props: Props) => {
               <p className="text-sm">See more</p>
             </div>
             <Separator orientation="horizontal" />
-            {transactions &&
-              transactions.data.map((transaction) => (
+            {recentTransactions && recentTransactions.length > 0 ? (
+              recentTransactions.map((transaction) => (
                 <div
                   className="flex gap-3 w-full justify-between items-center border-b-2 py-5"
                   key={transaction.id}
                 >
-                  <p className="font-bold">
-                    {transaction.calculated_statement_descriptor}
-                  </p>
+                  <div>
+                    <p className="font-bold">{transaction.name}</p>
+                    {transaction.purchasedAt && (
+                      <p className="text-sm text-gray-500">
+                        {formatDistance(new Date(transaction.purchasedAt), new Date(), { addSuffix: true })}
+                      </p>
+                    )}
+                  </div>
                   <p className="font-bold text-xl">
-                    ${transaction.amount / 100}
+                    ${transaction.price}
                   </p>
                 </div>
-              ))}
+              ))
+            ) : (
+              <p className="text-center text-gray-500 py-4">No recent transactions</p>
+            )}
           </div> */}
         </div>
       </div>
