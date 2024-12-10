@@ -142,27 +142,36 @@ export const useStripeElements = (payment: 'STANDARD' | 'PRO' | 'ULTIMATE') => {
 
   const onGetBillingIntent = async (plans: 'STANDARD' | 'PRO' | 'ULTIMATE') => {
     try {
+      console.log('Getting billing intent for plan:', plans)
       setLoadForm(true)
       const intent = await onGetStripeClientSecret(plans)
+      console.log('Received intent:', intent)
+      
       if (intent) {
+        if ('free' in intent && intent.free) {
+          console.log('Free plan detected')
+          setStripeSecret('')
+        } else if ('secret' in intent && intent.secret) {
+          console.log('Setting stripe secret:', intent.secret)
+          setStripeSecret(intent.secret)
+        }
         setLoadForm(false)
-        setStripeSecret(intent.secret!)
       }
     } catch (error) {
-      console.log(error)
+      console.log('Error getting billing intent:', error)
+      setLoadForm(false)
     }
   }
 
   useEffect(() => {
+    console.log('useEffect triggered with payment:', payment)
     onGetBillingIntent(payment)
   }, [payment])
 
   return { stripeSecret, loadForm }
 }
 
-export const useCompletePayment = (
-  payment: 'STANDARD' | 'PRO' | 'ULTIMATE'
-) => {
+export const useCompletePayment = (payment: 'STANDARD' | 'PRO' | 'ULTIMATE') => {
   const [processing, setProcessing] = useState<boolean>(false)
   const router = useRouter()
   const { toast } = useToast()
@@ -171,14 +180,34 @@ export const useCompletePayment = (
 
   const onMakePayment = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Handle free plan differently
+    if (payment === 'STANDARD') {
+      try {
+        setProcessing(true)
+        const plan = await onUpdateSubscription(payment)
+        if (plan) {
+          toast({
+            title: 'Success',
+            description: plan.message,
+          })
+          setProcessing(false)
+          router.refresh()
+        }
+      } catch (error) {
+        console.log(error)
+        setProcessing(false)
+      }
+      return
+    }
+
+    // Handle paid plans
     if (!stripe || !elements) {
       return null
     }
 
-
     try {
       setProcessing(true)
-
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -189,6 +218,10 @@ export const useCompletePayment = (
 
       if (error) {
         console.log(error)
+        toast({
+          title: 'Error',
+          description: error.message,
+        })
       }
 
       if (paymentIntent?.status === 'succeeded') {
@@ -205,6 +238,7 @@ export const useCompletePayment = (
       router.refresh()
     } catch (error) {
       console.log(error)
+      setProcessing(false)
     }
   }
 

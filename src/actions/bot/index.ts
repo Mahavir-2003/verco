@@ -234,13 +234,15 @@ export const onAiChatBotAssistant = async (
   
               if the customer says something out of context or inapporpriate. Simply say this is beyond you and you will get a real user to continue the conversation. And add a keyword (realtime) at the end.
   
-              if the customer agrees to book an appointment send them this link http://localhost:3000/portal/${id}/appointment/${
+              Note that this is very important if the customer agrees to book an appointment send them this link https://verco-ai.vercel.app/portal/${id}/appointment/${
                 checkCustomer?.customer[0].id
-              }
-  
-              if the customer wants to buy a product redirect them to the payment page http://localhost:3000/portal/${id}/payment/${
+              }/
+              Note that this is very important if the customer asks about the product or services or asks to buy/purchase anything send them this link without any delay or further questions https://verco-ai.vercel.app/portal/${id}/payment/${
                 checkCustomer?.customer[0].id
-              }
+              }/
+              if the customer wants to buy a product or they say i want to buy something at any point in time send them this link without any delay or further questions https://verco-ai.vercel.app/portal/${id}/payment/${
+                checkCustomer?.customer[0].id
+              }/
               `}]
             },
             ...chat.map(msg => ({
@@ -264,6 +266,9 @@ export const onAiChatBotAssistant = async (
               live: true,
             },
           })
+
+          // log the customer id
+          console.log("THe MF customer id is ", checkCustomer?.customer[0].id)
 
           if (realtime) {
             const response = {
@@ -317,7 +322,7 @@ export const onAiChatBotAssistant = async (
             const response = {
               role: 'assistant',
               content: `Great! you can follow the link to proceed`,
-              link: link.slice(0, -1),
+              link: link
             }
 
             await onStoreConversations(

@@ -4,16 +4,22 @@ import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import TypeSelectionForm from './type-selection-form'
 import dynamic from 'next/dynamic'
-import { Spinner } from '@/components/spinner'
+
+// Create a loading component that matches DynamicOptionsLoadingProps
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center w-full h-full">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+  </div>
+)
 
 const DetailForm = dynamic(() => import('./account-details-form'), {
   ssr: false,
-  loading: Spinner,
+  loading: LoadingSpinner
 })
 
 const OTPForm = dynamic(() => import('./otp-form'), {
   ssr: false,
-  loading: Spinner,
+  loading: LoadingSpinner
 })
 
 type Props = {}

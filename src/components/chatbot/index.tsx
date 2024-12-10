@@ -4,7 +4,7 @@ import React from 'react'
 import { BotWindow } from './window'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import { BotIcon } from '@/icons/bot_icon'
+import { BotIcon } from '@/icons/bot-icon'
 
 type Props = {}
 
@@ -25,7 +25,7 @@ const AiChatBot = (props: Props) => {
   } = useChatBot()
 
   return (
-    <div className="h-screen flex flex-col justify-end items-end gap-4 bg-transparent">
+    <div className="h-screen flex flex-col justify-end items-end gap-4">
       {botOpened && (
         <BotWindow
           errors={errors}
@@ -45,7 +45,7 @@ const AiChatBot = (props: Props) => {
       )}
       <div
         className={cn(
-          'rounded-full overflow-hidden relative cursor-pointer shadow-md w-20 h-20 flex items-center justify-center ',
+          'rounded-full relative cursor-pointer shadow-md w-20 h-20 flex items-center justify-center bg-grandis',
           loading ? 'invisible' : 'visible'
         )}
         onClick={onOpenChatBot}

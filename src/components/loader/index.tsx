@@ -16,8 +16,8 @@ export const Loader = ({
   className,
 }: LoaderProps) => {
   return loading ? (
-    <div className={cn(className || 'w-full py-5 px-2 flex justify-center')}>
-      <Spinner  noPadding={noPadding} />
+    <div className={cn(className || 'w-full py-5 flex justify-center')}>
+      <Spinner noPadding={noPadding} />
     </div>
   ) : (
     children

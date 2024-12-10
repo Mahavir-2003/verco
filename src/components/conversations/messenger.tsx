@@ -45,27 +45,25 @@ const Messenger = (props: Props) => {
       </div>
       <form
         onSubmit={onHandleSentMessage}
-        className="flex px-3 pt-3 pb-4 flex-col backdrop-blur-sm bg-muted w-full "
+        className="flex px-3 pt-3 pb-10 flex-col backdrop-blur-sm bg-muted w-full"
       >
-        <div className="flex justify-between items-center border-[1px] border-white/30 p-2 gap-x-2 rounded-lg">
-        <span className='mx-1'>
-          <PaperclipIcon className='text-muted-foreground' width={20} height={20} />
-        </span>
+        <div className="flex justify-between">
           <Input
             {...register('content')}
             placeholder="Type your message..."
-            className="focus-visible:ring-0 flex-1 p-0 focus-visible:ring-offset-0 bg-transparent rounded-none outline-none border-none"
+            className="focus-visible:ring-0 flex-1 p-0 focus-visible:ring-offset-0 bg-muted rounded-none outline-none border-none"
           />
           <Button
             type="submit"
-            className="px-7 "
-            variant="secondary"
+            className="mt-3 px-7"
             disabled={!chatRoom}
           >
             Send
           </Button>
         </div>
-        
+        <span>
+          <PaperclipIcon className='text-muted-foreground' />
+        </span>
       </form>
     </div>
   )

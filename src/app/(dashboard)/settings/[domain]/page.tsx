@@ -13,9 +13,9 @@ const DomainSettingsPage = async ({ params }: Props) => {
   if (!domain) redirect('/dashboard')
 
   return (
-    <div className=' w-full h-[100dvh] px-4 py-2 overflow-scroll custom-scrollbar'>
+    <>
       <InfoBar />
-      <div className="w-full flex-1">
+      <div className="overflow-y-auto w-full chat-window flex-1 h-0">
         <SettingsForm
           plan={domain.subscription?.plan!}
           chatBot={domain.domains[0].chatBot}
@@ -28,7 +28,7 @@ const DomainSettingsPage = async ({ params }: Props) => {
           products={domain.domains[0].products || []}
         />
       </div>
-    </div>
+    </>
   )
 }
 

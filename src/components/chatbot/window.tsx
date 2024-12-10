@@ -4,9 +4,9 @@ import { UseFormRegister } from 'react-hook-form'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import RealTimeMode from './real-time'
 import Image from 'next/image'
-import TabsMenu from '../tabs/index'
+import TabsMenu from '../tabs/intex'
 import { BOT_TABS_MENU } from '@/constants/menu'
-import ChatIcon from '@/icons/chat_icon'
+import ChatIcon from '@/icons/chat-icon'
 import { TabsContent } from '../ui/tabs'
 import { Separator } from '../ui/separator'
 import Bubble from './bubble'
@@ -30,11 +30,11 @@ type Props = {
   textColor?: string | null
   help?: boolean
   realtimeMode:
-  | {
-    chatroom: string
-    mode: boolean
-  }
-  | undefined
+    | {
+        chatroom: string
+        mode: boolean
+      }
+    | undefined
   helpdesk: {
     id: string
     question: string
@@ -72,19 +72,19 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
   ) => {
     console.log(errors)
     return (
-      <div className="h-[670px] w-[450px] flex flex-col justify-between pb-4 bg-[#252525] rounded-md mr-[40px] border-[1px] border-white/30 overflow-hidden">
+      <div className="h-[670px] w-[450px] flex flex-col bg-white rounded-xl mr-[80px] border-[1px] overflow-hidden">
         <div className="flex justify-between px-4 pt-4">
-          <div className="flex gap-2 justify-start items-center">
-            <Avatar className="w-12 h-12">
+          <div className="flex gap-2">
+            <Avatar className="w-20 h-20">
               <AvatarImage
                 src="https://github.com/shadcn.png"
                 alt="@shadcn"
               />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <div className="flex items-start justify-center flex-col">
+            <div className="flex items-start flex-col">
               <h3 className="text-lg font-bold leading-none">
-                Verco - Sales Allay
+                Sales Rep - Verco
               </h3>
               <p className="text-sm">{domainName.split('.com')[0]}</p>
               {realtimeMode?.mode && (
@@ -106,7 +106,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
         </div>
         <TabsMenu
           triggers={BOT_TABS_MENU}
-          className=" bg-transparent border-[1px] border-white/30 m-2"
+          className=" bg-transparent border-[1px] border-border m-2"
         >
           <TabsContent value="chat">
             <Separator orientation="horizontal" />
@@ -116,7 +116,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                   background: theme || '',
                   color: textColor || '',
                 }}
-                className="px-3 flex h-[400px] flex-col py-5 gap-3 chat-window overflow-y-auto custom-scrollbar"
+                className="px-3 flex h-[400px] flex-col py-5 gap-3 chat-window overflow-y-auto"
                 ref={ref}
               >
                 {chats.map((chat, key) => (
@@ -131,31 +131,28 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                 onSubmit={onChat}
                 className="flex px-3 py-1 flex-col flex-1 bg-porcelain"
               >
-                <div className="flex justify-between items-center border-[1px] border-white/30 p-2 gap-x-2 rounded-lg ">
-                  <span className='mx-1'>
-                    <Label htmlFor="bot-image">
-                      <Paperclip />
-                      <Input
-                        {...register('image')}
-                        type="file"
-                        id="bot-image"
-                        className="hidden"
-                      />
-                    </Label>
-                  </span>
+                <div className="flex justify-between">
                   <Input
                     {...register('content')}
                     placeholder="Type your message..."
-                    className="focus-visible:ring-0 flex-1 p-0 focus-visible:ring-offset-0 bg-transparent rounded-none outline-none border-none"
+                    className="focus-visible:ring-0 flex-1 p-0 focus-visible:ring-offset-0 bg-porcelain rounded-none outline-none border-none"
                   />
                   <Button
                     type="submit"
-                    variant="secondary"
+                    className="mt-3"
                   >
                     <Send />
                   </Button>
                 </div>
-
+                <Label htmlFor="bot-image">
+                  <Paperclip />
+                  <Input
+                    {...register('image')}
+                    type="file"
+                    id="bot-image"
+                    className="hidden"
+                  />
+                </Label>
               </form>
             </div>
           </TabsContent>
@@ -180,8 +177,8 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             </div>
           </TabsContent>
         </TabsMenu>
-        <div className="flex justify-center ">
-          <p className="text-gray-400 text-xs">Powered By Verco</p>
+        <div className="flex justify-center py-2">
+          <p className="text-gray-400 text-xs">Powered By Verco & Mahavir Patel</p>
         </div>
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import TabsMenu from '../tabs/index'
+import TabsMenu from '../tabs/intex'
 import { SideSheet } from '../sheet'
 import { Plus } from 'lucide-react'
 import { CreateProductForm } from './product-form'
@@ -32,18 +32,21 @@ const ProductTable = ({ id, products }: Props) => {
         </p>
       </div>
       <TabsMenu
-        className="w-full flex justify-start mt-4 bg-[#252525] font-light px-1 border-[1px] border-white/40 rounded-md"
+        className="w-full flex justify-start"
         triggers={[
           {
             label: 'All products',
           },
+          { label: 'Live' },
+          { label: 'Deactivated' },
         ]}
         button={
-          <div className="flex-1 flex justify-end text-white">
+          <div className="flex-1 flex justify-end">
             <SideSheet
-              description="Add products to your store and set them live to accept payments from customers."
+              description="Add products to your store and set them live to accept payments from
+          customers."
               title="Add a product"
-              className="flex items-center gap-2 px-4 py-2 text-white font-semibold rounded-lg text-sm "
+              className="flex items-center gap-2 bg-orange px-4 py-2 text-black font-semibold rounded-lg text-sm"
               trigger={
                 <>
                   <Plus
@@ -60,7 +63,7 @@ const ProductTable = ({ id, products }: Props) => {
         }
       >
         <TabsContent value="All products">
-          <DataTable  headers={['Featured Image', 'Name', 'Pricing', 'Created']}>
+          <DataTable headers={['Featured Image', 'Name', 'Pricing', 'Created']}>
             {products.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>
@@ -71,7 +74,7 @@ const ProductTable = ({ id, products }: Props) => {
                     alt="image"
                   />
                 </TableCell>
-                <TableCell>${product.name}</TableCell>
+                <TableCell>{product.name}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell className="text-right">
                   {product.createdAt.getDate()}{' '}

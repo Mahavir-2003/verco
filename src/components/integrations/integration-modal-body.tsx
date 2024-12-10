@@ -17,8 +17,8 @@ export const IntegrationModalBody = ({
   switch (type) {
     case 'stripe':
       return (
-        <div className="flex flex-col gap-2 bg-[#252525]">
-          <h2 className="font-semibold">Stripe would like to access</h2>
+        <div className="flex flex-col gap-2">
+          <h2 className="font-bold">Stripe would like to access</h2>
           {[
             'Payment and bank information',
             'Products and services you sell',
@@ -27,14 +27,14 @@ export const IntegrationModalBody = ({
           ].map((item, key) => (
             <div
               key={key}
-              className="flex gap-2 items-center pl-3 text-sm text-white/80"
+              className="flex gap-2 items-center pl-3"
             >
               <CheckCircle2Icon />
               <p>{item}</p>
             </div>
           ))}
           <div className="flex justify-between mt-10">
-            <Button variant="secondary">Learn more</Button>
+            <Button variant="outline">Learn more</Button>
             <StripeConnect connected={connections[type]} />
           </div>
         </div>

@@ -12,7 +12,7 @@ type ProgressBarProps = {
 export const ProgressBar = ({ label, end, credits }: ProgressBarProps) => {
   return (
     <div className="flex flex-col w-full md:w-7/12 gap-1">
-      <h2 className="font-medium ">{label}</h2>
+      <h2 className="font-bold">{label}</h2>
       <div className="flex flex-col">
         <div className="flex justify-between text-sm">
           <p>{credits}</p>
@@ -20,7 +20,7 @@ export const ProgressBar = ({ label, end, credits }: ProgressBarProps) => {
         </div>
         <Progress
           value={(credits / end) * 100}
-          className="w-full [&>*]:bg-[#F49C46] bg-white [&>*]:rounded-full h-2"
+          className="w-full"
         />
       </div>
     </div>

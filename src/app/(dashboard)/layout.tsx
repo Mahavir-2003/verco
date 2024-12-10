@@ -1,19 +1,26 @@
-// return child in layout
-import { onCompleteUserRegistration, onLoginUser } from '@/actions/auth'
-import SideBar from "@/components/sidebar";
+import { onLoginUser } from '@/actions/auth'
+import SideBar from '@/components/sidebar'
+import { ChatProvider } from '@/context/user-chat-context'
+import React from 'react'
 
-const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
-
-    const kf = await onCompleteUserRegistration()
-    const authenticated = await onLoginUser()
-    // if (!authenticated) return null
-
-    return (
-        <div className="w-[100dvw] h-[100dvh] flex justify-start items-start">
-            <SideBar domains={authenticated?.domain} />
-            {children}
-        </div>
-    )
+type Props = {
+  children: React.ReactNode
 }
 
-export default DashboardLayout;
+const OwnerLayout = async ({ children }: Props) => {
+  const authenticated = await onLoginUser()
+  if (!authenticated) return null
+
+  return (
+    <ChatProvider>
+      <div className="flex h-screen w-full">
+        <SideBar domains={authenticated.domain} />
+        <div className="w-full h-screen flex flex-col pl-20 md:pl-4 py-2 pr-4">
+          {children}
+        </div>
+      </div>
+    </ChatProvider>
+  )
+}
+
+export default OwnerLayout

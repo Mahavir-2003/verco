@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from '../ui/card'
 import { CloudIcon } from 'lucide-react'
 import { Separator } from '../ui/separator'
-import Modal from '../modal'
+import Modal from '../mondal'
 import { IntegrationModalBody } from './integration-modal-body'
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 
 const IntegrationTrigger = ({
   name,
-  logo, 
+  logo,
   title,
   descrioption,
   connections,
@@ -29,7 +29,7 @@ const IntegrationTrigger = ({
       logo={logo}
       description={descrioption}
       trigger={
-        <Card className="px-6 py-2 cursor-pointer flex gap-2 bg-transparent text-white rounded-md border-[1px] border-white/40 hover:border-white/80 transition-all duration-200">
+        <Card className="px-3 py-2 cursor-pointer flex gap-2">
           <CloudIcon />
           {connections[name] ? 'connected' : 'connect'}
         </Card>

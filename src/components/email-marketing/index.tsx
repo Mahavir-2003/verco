@@ -4,13 +4,13 @@ import React from 'react'
 import { CustomerTable } from './customer-table'
 import { Button } from '../ui/button'
 import { Plus } from 'lucide-react'
-import Modal from '../modal'
+import Modal from '../mondal'
 import { Card, CardContent, CardDescription, CardTitle } from '../ui/card'
 import { Loader } from '../loader'
 import FormGenerator from '../forms/form-generator'
 import { cn, getMonthName } from '@/lib/utils'
-import CalIcon from '@/icons/cal_icon'
-import PersonIcon from '@/icons/person_icon'
+import CalIcon from '@/icons/cal-icon'
+import PersonIcon from '@/icons/person-icon'
 import { EditEmail } from './edit-email'
 
 type Props = {
@@ -57,22 +57,19 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
   } = useEmailMarketing()
 
   return (
-    <div className="w-full flex-1 h-auto grid grid-cols-1 lg:grid-cols-3 gap-10 ">
-      <div className=' col-span-2'>
-        <CustomerTable
-          domains={domains}
-          onId={onSetAnswersId}
-          onSelect={onSelectedEmails}
-          select={isSelected}
-          id={isId}
-        />
-      </div>
+    <div className="w-full flex-1 h-0 grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <CustomerTable
+        domains={domains}
+        onId={onSetAnswersId}
+        onSelect={onSelectedEmails}
+        select={isSelected}
+        id={isId}
+      />
       <div>
         <div className="flex gap-3 justify-end">
           <Button
             disabled={isSelected.length == 0}
             onClick={onAddCustomersToCampaign}
-            className='rounded-sm bg-transparent border-[1px] border-white/30  hover:border-white/60'
           >
             <Plus /> Add to campaign
           </Button>
@@ -80,7 +77,7 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
             title="Create a new campaign"
             description="Add your customers and create a marketing campaign"
             trigger={
-              <Card className="flex gap-2 items-center px-3 cursor-pointer text-sm rounded-sm text-white bg-transparent border-[1px] border-white/30  hover:border-white/60">
+              <Card className="flex gap-2 items-center px-3 cursor-pointer text-sm">
                 <Loader loading={false}>
                   <Plus /> Create Campaign
                 </Loader>
@@ -88,7 +85,7 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
             }
           >
             <form
-              className="flex flex-col gap-4 "
+              className="flex flex-col gap-4"
               onSubmit={onCreateCampaign}
             >
               <FormGenerator
@@ -103,14 +100,13 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
                 className="w-full"
                 disabled={loading}
                 type="submit"
-                variant="secondary"
               >
                 <Loader loading={loading}>Create Campaign</Loader>
               </Button>
             </form>
           </Modal>
-          <Card className="p-2 rounded-sm bg-transparent border-[1px] border-white/50 ">
-            <CardDescription className="font-medium text-white">
+          <Card className="p-2">
+            <CardDescription className="font-bold">
               {subscription?.credits} credits
             </CardDescription>
           </Card>

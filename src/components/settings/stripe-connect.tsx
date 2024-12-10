@@ -12,11 +12,10 @@ export const StripeConnect = ({ connected }: StripeConnectProps) => {
   const { onStripeConnect, onStripeAccountPending } = useStripe()
   return (
     <Button
-      className='bg-transparent border-[1px] border-white/40 hover:border-white/80 transition-all duration-200'
       disabled={connected}
       onClick={onStripeConnect}
     >
-      <Loader loading={onStripeAccountPending} className='' >
+      <Loader loading={onStripeAccountPending}>
         {connected ? 'Connected' : 'Connect to stripe'}
       </Loader>
     </Button>

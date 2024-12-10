@@ -1,6 +1,6 @@
 'use client'
 import Section from '@/components/section-label'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/components/ui/use-toast'
 import { Copy } from 'lucide-react'
 import React from 'react'
 
@@ -19,41 +19,40 @@ const CodeSnippet = ({ id }: Props) => {
     document.head.append(style);
     }
     
-    iframeStyles('.chat-frame {position: fixed;bottom: 50px;right: 50px;border: none;}')
+    iframeStyles('.chat-frame {position: fixed; bottom: 50px; right: 50px; border: none; } ')
     
-    iframe.src = "http://localhost:3000/chatbot"
+    iframe.src = "https://verco-ai.vercel.app/chatbot"
     iframe.classList.add('chat-frame')
     document.body.appendChild(iframe)
     
     window.addEventListener("message", (e) => {
-        if(e.origin !== "http://localhost:3000") return null
+        if(e.origin !== "https://verco-ai.vercel.app") return null
         let dimensions = JSON.parse(e.data)
         iframe.width = dimensions.width
         iframe.height = dimensions.height
-        iframe.contentWindow.postMessage("${id}", "http://localhost:3000/")
+        iframe.contentWindow.postMessage("${id}", "https://verco-ai.vercel.app/")
     })
         `
 
   return (
-    <div className="mt-10 flex flex-col gap-5 items-start pr-20">
+    <div className="mt-10 flex flex-col gap-5 items-start">
       <Section
         label="Code snippet"
         message="Copy and paste this code snippet into the header tag of your website"
       />
-      <div className="bg-[#202020] w-full rounded-lg inline-block relative border-[1px] border-white/30">
+      <div className="bg-cream px-10 rounded-lg inline-block relative">
         <Copy
-          className="absolute top-4 right-5 text-white cursor-pointer"
+          className="absolute top-5 right-5 text-gray-400 cursor-pointer"
           onClick={() => {
             navigator.clipboard.writeText(snippet)
             toast({
               title: 'Copied to clipboard',
               description: 'You can now paste the code inside your website',
-              className: 'bg-[#202020] border-[1px] border-white/30 text-white',
             })
           }}
         />
         <pre>
-          <code className="text-white/70">{snippet}</code>
+          <code className="text-gray-500">{snippet}</code>
         </pre>
       </div>
     </div>

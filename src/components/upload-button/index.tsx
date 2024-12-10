@@ -17,7 +17,7 @@ const UploadButton = ({ errors, label, register }: Props) => {
       <div className="felx gap-2 items-center">
         <Label
           htmlFor="upload-button"
-          className="flex gap-2 p-3 rounded-lg bg-cream text-white cursor-pointer font-semibold text-sm items-center"
+          className="flex gap-2 p-3 rounded-lg bg-cream text-gray-600 cursor-pointer font-semibold text-sm items-center"
         >
           <Input
             {...register('image')}
@@ -25,7 +25,7 @@ const UploadButton = ({ errors, label, register }: Props) => {
             type="file"
             id="upload-button"
           />
-          <Edit className=' text-white' />
+          <Edit />
           {label}
         </Label>
         <p className="text-sm text-gray-400 ml-6">

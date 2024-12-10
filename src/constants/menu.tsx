@@ -1,12 +1,12 @@
-import CalIcon from '@/icons/cal_icon'
-import ChatIcon from '@/icons/chat_icon'
-import DashboardIcon from '@/icons/dashboard_icon'
-import EmailIcon from '@/icons/email_icon'
-import HelpDeskIcon from '@/icons/help_desk_icon'
-import IntegrationsIcon from '@/icons/integrations_icon'
-import SettingsIcon from '@/icons/settings_icon'
-import StarIcon from '@/icons/star_icon'
-import TimerIcon from '@/icons/timer_icon'
+import CalIcon from '@/icons/cal-icon'
+import ChatIcon from '@/icons/chat-icon'
+import DashboardIcon from '@/icons/dashboard-icon'
+import EmailIcon from '@/icons/email-icon'
+import HelpDeskIcon from '@/icons/help-desk-icon'
+import IntegrationsIcon from '@/icons/integrations-icon'
+import SettingsIcon from '@/icons/settings-icon'
+import StarIcon from '@/icons/star-icon'
+import TimerIcon from '@/icons/timer-icon'
 
 type SIDE_BAR_MENU_PROPS = {
   label: string

@@ -33,7 +33,7 @@ export const postToParent = (message: string) => {
 }
 
 export const extractURLfromString = (url: string) => {
-  return url.match(/https?:\/\/[^\s"<>]+/)
+  return url.match(/https?:\/\/[^\s"<>\n]+/g)
 }
 
 export const extractEmailsFromString = (text: string) => {
@@ -64,4 +64,52 @@ export const getMonthName = (month: number) => {
     : month == 11
     ? 'Nov'
     : month == 12 && 'Dec'
+}
+
+export function isValidUUID(uuid: string) {
+  if (!uuid) {
+    console.error('UUID is empty or undefined')
+    return false
+  }
+
+  // Check length first (should be 36 characters including hyphens)
+  if (uuid.length !== 36) {
+    console.error(`Invalid UUID length: ${uuid.length}, expected 36`)
+    return false
+  }
+
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  const isValid = uuidRegex.test(uuid)
+  
+  if (!isValid) {
+    console.error(`Invalid UUID format: ${uuid}`)
+  }
+  
+  return isValid
+}
+
+// Add this function to handle potentially truncated UUIDs
+export function fixTruncatedUUID(uuid: string): string | null {
+  // If it's already a valid UUID, return it
+  if (isValidUUID(uuid)) {
+    return uuid
+  }
+
+  // If it's truncated (35 characters with hyphens in correct places)
+  if (uuid.length === 35 && 
+      uuid.charAt(8) === '-' && 
+      uuid.charAt(13) === '-' && 
+      uuid.charAt(18) === '-' && 
+      uuid.charAt(23) === '-') {
+    // Try each possible hex digit
+    const possibleDigits = '0123456789abcdef'
+    for (const digit of possibleDigits) {
+      const potentialUUID = uuid + digit
+      if (isValidUUID(potentialUUID)) {
+        return potentialUUID
+      }
+    }
+  }
+  
+  return null
 }

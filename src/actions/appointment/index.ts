@@ -2,9 +2,22 @@
 
 import { client } from '@/lib/prisma'
 import { currentUser } from '@clerk/nextjs'
+import { isValidUUID } from '@/lib/utils'
 
 export const onDomainCustomerResponses = async (customerId: string) => {
   try {
+    console.log('Customer ID received:', customerId)
+    console.log('Customer ID length:', customerId.length)
+    console.log('Original UUID from database:', await client.customer.findUnique({
+      where: { id: customerId },
+      select: { id: true }
+    }))
+    
+    if (!isValidUUID(customerId)) {
+      console.error('Invalid UUID format:', customerId)
+      return null
+    }
+
     const customerQuestions = await client.customer.findUnique({
       where: {
         id: customerId,

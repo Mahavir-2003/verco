@@ -6,14 +6,50 @@ import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET!, {
   typescript: true,
-  apiVersion: '2024-04-10',
+  apiVersion: '2023-10-16',
 })
+
+type StripeSecretResponse = 
+  | { status?: number; message?: string; plan?: Plans; free: boolean; secret?: undefined }
+  | { secret: string | null; free?: undefined }
+
+export const onGetStripeClientSecret = async (
+  plan: 'STANDARD' | 'PRO' | 'ULTIMATE'
+): Promise<StripeSecretResponse> => {
+  try {
+    if (plan === 'STANDARD') {
+      return {
+        status: 200,
+        message: 'Free plan selected',
+        plan: 'STANDARD',
+        free: true
+      }
+    }
+
+    const amount = plan === 'PRO' ? 1500 : 3500
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: 'usd',
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    })
+
+    return { secret: paymentIntent.client_secret }
+  } catch (error) {
+    console.error('Error creating payment intent:', error)
+    return { secret: null }
+  }
+}
 
 export const onCreateCustomerPaymentIntentSecret = async (
   amount: number,
   stripeId: string
 ) => {
   try {
+    const user = await currentUser()
+    if (!user) return null
+
     const paymentIntent = await stripe.paymentIntents.create(
       {
         currency: 'usd',
@@ -21,6 +57,10 @@ export const onCreateCustomerPaymentIntentSecret = async (
         automatic_payment_methods: {
           enabled: true,
         },
+        metadata: {
+          clerkId: user.id,
+        },
+        transfer_group: user.id,
       },
       { stripeAccount: stripeId }
     )
@@ -67,37 +107,6 @@ export const onUpdateSubscription = async (
         message: 'subscription updated',
         plan: update.subscription?.plan,
       }
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const setPlanAmount = (item: 'STANDARD' | 'PRO' | 'ULTIMATE') => {
-  if (item == 'PRO') {
-    return 1500
-  }
-  if (item == 'ULTIMATE') {
-    return 3500
-  }
-  return 0
-}
-
-export const onGetStripeClientSecret = async (
-  item: 'STANDARD' | 'PRO' | 'ULTIMATE'
-) => {
-  try {
-    const amount = setPlanAmount(item)
-    const paymentIntent = await stripe.paymentIntents.create({
-      currency: 'usd',
-      amount: amount,
-      automatic_payment_methods: {
-        enabled: true,
-      },
-    })
-
-    if (paymentIntent) {
-      return { secret: paymentIntent.client_secret }
     }
   } catch (error) {
     console.log(error)

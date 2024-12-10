@@ -13,21 +13,21 @@ type Props = {
 
 const IntegrationsList = ({ connections }: Props) => {
   return (
-    <div className="flex-1 grid grid-cols-1 content-start lg:grid-cols-3 xl:grid-cols-4 gap-3 ">
+    <div className="flex-1 h-0 grid grid-cols-1 content-start lg:grid-cols-3 xl:grid-cols-4 gap-3">
       {INTEGRATION_LIST_ITEMS.map((item) => (
-        <Card key={item.id} className='bg-[#181818] border-[1px] border-white/30 w-full p-1 '>
-          <CardContent className="flex flex-col p-4 gap-6">
+        <Card key={item.id}>
+          <CardContent className="flex flex-col p-5 gap-2">
             <div className="flex w-full justify-between items-start gap-x-20">
               <div className="">
-                <div className="w-28 h-12 relative">
+                <div className="w-20 h-10 relative">
                   <Image
                     sizes="100vw"
-                    src={`https://ucarecdn.com/${item.logo}/`}
+                    src="/images/stripe.png"
                     alt="Logo"
                     fill
                   />
                 </div>
-                {/* <h2 className="font-bold capitalize">{item.name}</h2> */}
+                <h2 className="font-bold capitalize">{item.name}</h2>
               </div>
               <IntegrationTrigger
                 connections={connections}
@@ -37,7 +37,7 @@ const IntegrationsList = ({ connections }: Props) => {
                 name={item.name}
               />
             </div>
-            <CardDescription className=' text-white text-md font-light'>{item.description}</CardDescription>
+            <CardDescription>{item.description}</CardDescription>
           </CardContent>
         </Card>
       ))}

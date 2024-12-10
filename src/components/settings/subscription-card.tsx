@@ -21,22 +21,24 @@ const SubscriptionCard = ({
   payment,
   id,
 }: Props) => {
+  console.log('SubscriptionCard render:', { title, payment, id })
+  
   return (
     <Label htmlFor={id}>
       <Card
         className={cn(
-          'w-full cursor-pointer bg-transparent text-white',
-          payment == id && 'bg-black/40'
+          'w-full cursor-pointer',
+          payment == id && 'border-orange'
         )}
       >
         <CardContent className="flex justify-between p-2">
           <div className="flex items-center gap-3">
-            <Card className={cn('flex justify-center p-3 border-none bg-transparent shadow-none')}>
-              <CardTitle className=' text-white'>${price}</CardTitle>
+            <Card className={cn('flex justify-center p-3 border-none')}>
+              <CardTitle>${price}</CardTitle>
             </Card>
             <div className="">
-              <CardDescription className="font-bold text-white">{title}</CardDescription>
-              <CardDescription className="font-light text-white/60">
+              <CardDescription className="font-bold">{title}</CardDescription>
+              <CardDescription className="font-light">
                 {description}
               </CardDescription>
             </div>
@@ -49,7 +51,10 @@ const SubscriptionCard = ({
               )}
             />
             <Input
-              onClick={() => onPayment(title)}
+              onClick={() => {
+                console.log('Clicked subscription:', title)
+                onPayment(title)
+              }}
               value={id}
               id={id}
               className="hidden"

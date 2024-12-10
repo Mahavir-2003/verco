@@ -3,14 +3,13 @@ import React from 'react'
 type SectionProps = {
   label: string
   message: string
-  darkText?: boolean
 }
 
-const Section = ({ label, message , darkText = false }: SectionProps) => {
+const Section = ({ label, message }: SectionProps) => {
   return (
-    <div>
-      <p className={`text-lg font-medium ${darkText ? 'text-black' : 'text-white'}`}>{label}</p>
-      <p className={`text-sm font-light ${darkText ? 'text-black/80' : 'text-white/80'}`}>{message}</p>
+    <div >
+      <p className="text-sm font-medium">{label}</p>
+      <p className="text-sm font-light">{message}</p>
     </div>
   )
 }

@@ -4,20 +4,17 @@ import Section from '../section-label'
 import { Card, CardContent, CardDescription } from '../ui/card'
 import { Check, CheckCircle2, Plus } from 'lucide-react'
 import { pricingCards } from '@/constants/landing-page'
-import Modal from '../modal'
+import Modal from '../mondal'
 import SubscriptionForm from '../forms/settings/subscription-form'
 import Image from 'next/image'
-import CreditCardImage from "@/public/images/credit_card.svg"
 
 type Props = {}
 
 const BillingSettings = async (props: Props) => {
   const plan = await onGetSubscriptionPlan()
-  // console.log(plan)
   const planFeatures = pricingCards.find(
     (card) => card.title.toUpperCase() === plan?.toUpperCase()
   )?.features
-
   if (!planFeatures) return
 
   console.log(planFeatures)
@@ -47,7 +44,7 @@ const BillingSettings = async (props: Props) => {
               </Card>
             ) : (
               <Image
-                src={CreditCardImage}
+                src="/images/creditcard.png"
                 width={400}
                 height={400}
                 alt="image"

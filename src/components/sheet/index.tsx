@@ -25,10 +25,10 @@ export const SideSheet = ({
   return (
     <Sheet>
       <SheetTrigger className={className}>{trigger}</SheetTrigger>
-      <SheetContent className=' bg-[#181818] text-white border-white/30'>
+      <SheetContent>
         <SheetHeader>
-          <SheetTitle className=' text-white'>{title}</SheetTitle>
-          <SheetDescription className=' text-white/60'>{description}</SheetDescription>
+          <SheetTitle>{title}</SheetTitle>
+          <SheetDescription>{description}</SheetDescription>
         </SheetHeader>
         {children}
       </SheetContent>

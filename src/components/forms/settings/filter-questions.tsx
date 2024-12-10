@@ -21,8 +21,8 @@ const FilterQuestions = ({ id }: Props) => {
     useFilterQuestions(id)
 
   return (
-    <Card className="w-full grid grid-cols-1 lg:grid-cols-2  bg-[#161616] text-white rounded-md border-white/30">
-      <CardContent className="p-6 border-r-[1px] border-white/30">
+    <Card className="w-full grid grid-cols-1 lg:grid-cols-2">
+      <CardContent className="p-6 border-r-[1px]">
         <CardTitle>Bot Questions</CardTitle>
         <form
           onSubmit={onAddFilterQuestions}
@@ -61,8 +61,7 @@ const FilterQuestions = ({ id }: Props) => {
           </div>
           <Button
             type="submit"
-            className="font-semibold"
-            variant="secondary" 
+            className="bg-orange hover:bg-orange hover:opacity-70 transition duration-150 ease-in-out text-white font-semibold"
           >
             Create
           </Button>
