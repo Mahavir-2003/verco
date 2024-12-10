@@ -1,20 +1,68 @@
-## License
+# Verco AI - AI Powered Sales Assistant Chatbot
 
-This project is licensed for educational use only. For commercial use, a license must be purchased. You can obtain the license here: [Code License](https://webprodigies.com/codelicense).
+A modern SaaS platform that allows businesses to embed AI-powered sales assistant chatbots into their websites.
 
-## Usage Guidelines
+## Features
 
-Here are a few examples of how you can and cannot use the code:
+- AI-powered chatbot using Gemini AI
+- Real-time chat functionality with Pusher
+- Custom domain integration
+- Email marketing campaigns
+- Appointment scheduling
+- Product management
+- User authentication with Clerk
+- Stripe payment integration
+- Dark/Light theme support
+- Responsive design
 
-- **To learn?** ✅
-- **To build a portfolio?** ✅
-- **To get a job?** ✅
-- **To run as a business?** ❌
-- **To run as a SaaS?** ❌
-- **Any form of income through the code?** ❌
-- **To resell?** ❌
-- **To create content?** ❌
-- **To claim as your own?** ❌
+## Tech Stack
 
-These are just a few examples, and there may be more situations where the code usage is restricted you can read the agreement on the website.
-This code is provided strictly for learning purposes. If you wish to use our code for any commercial purposes, please purchase a license here: [Code License](https://webprodigies.com/codelicense).
+- **Frontend:** Next.js 14, React, TypeScript, Tailwind CSS
+- **Backend:** Next.js API routes, Prisma
+- **Database:** PostgreSQL
+- **AI:** Google Gemini AI
+- **Authentication:** Clerk
+- **Real-time:** Pusher
+- **Payments:** Stripe
+- **Styling:** Tailwind CSS, Shadcn UI
+- **Forms:** React Hook Form
+- **Email:** Nodemailer
+
+## Prerequisites
+
+- Node.js 18+ 
+- npm/yarn
+- PostgreSQL database
+- Clerk account
+- Stripe account
+- Pusher account
+- Google AI Platform account
+
+## Environment Variables
+
+Create a `.env` file with:
+NODE_MAILER_EMAIL
+NODE_MAILER_GMAIL_APP_PASSWORD
+NEXT_PUBLIC_APP_URL
+NEXT_PUBLIC_PUSHER_APP_CLUSTOR
+NEXT_PUBLIC_PUSHER_APP_SECRET
+NEXT_PUBLIC_PUSHER_APP_KEY
+NEXT_PUBLIC_PUSHER_APP_ID
+
+OPEN_AI_KEY
+CHAT_COMPLETION_PAWAN_API_KEY
+GEMINI_API_KEY
+
+NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY
+UPLOAD_CARE_SECRET_KEY
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL
+NEXT_PUBLIC_CLERK_SIGN_UP_URL
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL
+
+STRIPE_SECRET
+NEXT_PUBLIC_STRIPE_PUBLISH_KEY
